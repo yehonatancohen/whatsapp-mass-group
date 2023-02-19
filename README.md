@@ -2,8 +2,8 @@
 A couple of scripts to select hundreds of people to add to a group
 
 TO RUN:
-Copy the addPeople function to whatsapp web's console (F12 and then select console on top)
-after opening the "Add Participiant" window type in console addPeople({amount you want to choose})
+Copy the functions to whatsapp web's console (F12 and then select console on top)
+after opening the "Add Participiant" window type in console addPeople({amount you want to choose divided by 30})
 and then confirm the addition to the group
 
 BE CARFUL!
