@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Group Creator",
+  "version": "1.0",
+  "homepage_url": "https://github.com/yehonatancohen/whatsapp-mass-group",
+  "description": "Whatsapp mass group creation and sending messages",
+  "web_accessible_resources": [{
+    "matches": ["https://web.whatsapp.com/*"],
+    "resources": ["logo.png"]
+  }],
+  "action": {
+    "default_title": "tagEveryone!",
+    "default_popup": "popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://web.whatsapp.com/*"],
+      "js": ["content_scripts/main.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": { 
+    "128": "logo.png" 
+  },
+  "permissions": ["activeTab"]
+}
