@@ -238,6 +238,33 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function newName(str) {
+    // Extract the string and number parts
+    let match = str.match(/^(\D*)(\d*)$/);
+    let prefix = match[1];
+    let numStr = match[2];
+  
+    // Convert the number to a number (ignoring leading zeros)
+    let num = parseInt(numStr, 10);
+  
+    // Increment the number and convert it back to a string
+    if (num < 999) {
+      num++;
+    } else {
+      num = 1000;
+    }
+    let newNumStr = num.toString();
+  
+    // Pad the new number with leading zeros if necessary
+    while (newNumStr.length < numStr.length) {
+      newNumStr = "0" + newNumStr;
+    }
+  
+    // Combine the prefix and new number and return the result
+    return prefix + newNumStr;
+  }
+  
+
 async function selectContacts(amount) {
     var buttoncheck = document.getElementsByClassName("lhggkp7q cxec7x23 kanlod6e gfz4du6o r7fjleex nmeg1xfo okm7a8wg le5p0ye3")
     var clickbutton = document.getElementsByClassName("_199zF _3j691 _2N1Gm")
@@ -263,38 +290,40 @@ async function selectContacts(amount) {
     }
 }
 
-async function chooseAndAdd(names = [" "], amount) {
+async function chooseAndAdd(name, amount) {
     try {
+        //Press "Add participant"
         document.querySelector("#app > div > div > div._2Ts6i._1xFRo > span > div > span > div > div > section > div.gsqs0kct.oauresqk.efgp0a3n.h3bz2vby.g0rxnol2.tvf2evcx.oq44ahr5.lb5m6g5c.brac1wpa.lkjmyc96.i4pc7asj.bcymb0na.przvwfww.e8k79tju > div.tt8xd2xn.dl6j7rsh.mpdn4nr2.avk8rzj1 > div:nth-child(1) > div._8nE1Y > div > div").click()
     } catch {
+        //Press group name
         document.getElementsByClassName("_24-Ff")[0].click()
         await sleep(500)
+        //Press "Add participant"
         document.querySelector("#app > div > div > div._2Ts6i._1xFRo > span > div > span > div > div > section > div.gsqs0kct.oauresqk.efgp0a3n.h3bz2vby.g0rxnol2.tvf2evcx.oq44ahr5.lb5m6g5c.brac1wpa.lkjmyc96.i4pc7asj.bcymb0na.przvwfww.e8k79tju > div.tt8xd2xn.dl6j7rsh.mpdn4nr2.avk8rzj1 > div:nth-child(1) > div._8nE1Y > div > div").click()
     }
     await sleep(1000)
+    //Enter name
     document.execCommand('insertText', false, `${name}`)
     await sleep(500)
+    //Select Contacts
     await selectContacts(amount);
     await sleep(1000)
-    document.querySelector("#app > div > span:nth-child(2) > div > span > div > div > div > div > div > div > div:nth-child(2) > div > div > span > button").click()
-    await sleep(1000)
-    document.getElementsByClassName("p357zi0d gndfcl4n ac2vgrno mh8l8k0y k45dudtp i5tg98hk f9ovudaz przvwfww gx1rr48f f8jlpxt4 hnx8ox4h k17s6i4e ofejerhi os0tgls2 g9p5wyxn i0tg5vk9 aoogvgrq o2zu3hjb hftcxtij rtx6r8la e3b81npk oa9ii99z p1ii4mzz")[0].click()
-    await sleep(1000)
-    document.getElementsByClassName("tvf2evcx m0h2a7mj lb5m6g5c j7l1k36l ktfrpxia nu7pwgvd dnb887gk gjuq5ydh i2cterl7 p357zi0d ktfrpxia nu7pwgvd ac2vgrno sap93d0t gndfcl4n")[1].click()
-    await sleep(3000)
-    try{
+    //Press V Button
+    document.querySelector("#app > div > span:nth-child(2) > div > span > div > div > div > div > div > div > span.nbczt5ty.tvf2evcx.oq44ahr5.lb5m6g5c > div > div > div").click()
+    await sleep(2000)
+    //Press "Add participant"
+    document.querySelector("#app > div > span:nth-child(2) > div > span > div > div > div > div > div > div.p357zi0d.ns59xd2u.kcgo1i74.gq7nj7y3.lnjlmjd6.przvwfww.mc6o24uu.e65innqk.le5p0ye3 > div > button.emrlamx0.aiput80m.h1a80dm5.sta02ykp.g0rxnol2.l7jjieqr.hnx8ox4h.f8jlpxt4.l1l4so3b.bbv8nyr4.m2gb0jvt.rfxpxord.gwd8mfxi.mnh9o63b.qmy7ya1v.dcuuyf4k.swfxs4et.bgr8sfoe.a6r886iw.fx1ldmn8.orxa12fk.bkifpc9x.hjo1mxmu.oixtjehm.rpz5dbxo.bn27j4ou.snayiamo.szmswy5k").click()
+    await sleep(2000)
+    //Press Cancel
+    try {
         document.querySelector("#app > div > span:nth-child(2) > div > span > div > div > div > div > div > div.p357zi0d.ns59xd2u.kcgo1i74.gq7nj7y3.lnjlmjd6.przvwfww.mc6o24uu.e65innqk.le5p0ye3 > div > button.emrlamx0.aiput80m.h1a80dm5.sta02ykp.g0rxnol2.l7jjieqr.hnx8ox4h.f8jlpxt4.l1l4so3b.bbv8nyr4.m2gb0jvt.rfxpxord.gwd8mfxi.mnh9o63b.qmy7ya1v.dcuuyf4k.swfxs4et.bgr8sfoe.a6r886iw.fx1ldmn8.orxa12fk.bkifpc9x.hjo1mxmu.dul83ws3.o2v2jkg7.lpmlzjg7.b3vjre3n.s48w15s6.v9zxeiga.losjomng.snayiamo.hco6ovyk.jzidrpjq.c1yuexcr.kk3bglv9.germ6ouh").click()
-    }
-    catch{}
+    } catch {}
 }
 
 async function run(name, amount) {
-
-    startingName = parseInt(name)
     amount = parseInt(amount)
-    await chooseAndAdd(startingName, amount)
     setInterval(function() {
-        chooseAndAdd(startingName.toString().padStart(3, "0"), amount);
-        startingName++;
-    }, 60 * 60 * 1000);
+        chooseAndAdd(name, amount);
+        name = newName(name);
+    }, 2 * 60 * 60 * 1000);
 }
