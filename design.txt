@@ -1,0 +1,21 @@
+Requirements:
+    - Easy to use
+    - Indicative
+    - No bugs
+
+המטרה היא להוסיף כפתור כמו
+AddParticipant
+שמוסיף הרבה אנשים
+שייפתח מסך עם ההגדרות (יפורט אילו הגדרות)
+ויוסיף לפי ההגדרות אנשים לקבוצה
+
+!!חייב שיוכל לעבוד ברקע!!
+
+צריך הסברים אינדיקטבים אבל מפורטים
+להסביר טוב דברים חשובים אבל לא לחפור ולאבד את הטעם
+
+Settings:
+    - Amount => amount of people to add at each batch
+    - Time between batches => Time between each batch to another
+    - Name Prefix (Optional) => prefix of users to add (e.g P, PARTY)
+    

@@ -50,7 +50,7 @@ function displayCustomMessageBox(message) {
         document.body.removeChild(boxWrapper);
       }
     };
-  }
+}
   
 
 var menuButton;
@@ -64,6 +64,10 @@ async function addElement(targetElement) {
 }
 
 var menu;
+
+function function1(){
+    console.log("test");
+}
 
 function addButtonListener() {
     const parent = document;
@@ -89,9 +93,13 @@ function addButtonListener() {
 addButtonListener();
 
 const observer = new MutationObserver((mutations, obs) => {
-    const targetElement = document.querySelector('#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span');
-    if (targetElement) {
-        addElement(targetElement);
+    if (document.querySelector('#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span')) {
+        addElement(document.querySelector('#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span'));
+        obs.disconnect();
+        return;
+    }
+    if (document.querySelector('#app > div > div > div._2Ts6i._1xFRo > span > div > span > div > div > div > section > div:nth-child(6) > div > div')) {
+        addElement(document.querySelector('#app > div > div > div._2Ts6i._1xFRo > span > div > span > div > div > div > section > div:nth-child(6) > div > div'));
         obs.disconnect();
         return;
     }

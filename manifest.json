@@ -12,6 +12,10 @@
     "default_title": "tagEveryone!",
     "default_popup": "popup/popup.html"
   },
+  "background": {
+    "service_worker": "service_worker.js",
+    "type": "module"
+  },
   "content_scripts": [
     {
       "matches": ["https://web.whatsapp.com/*"],
@@ -22,5 +26,8 @@
   "icons": { 
     "128": "logo.png" 
   },
-  "permissions": ["activeTab"]
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ]
 }
