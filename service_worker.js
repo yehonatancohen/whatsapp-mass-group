@@ -28,9 +28,6 @@ function waitForElement(element) {
       if (targetElement && targetElement.offsetParent !== null) {
         // Call the corresponding function in the content script
         sendMessageToContentScript({ action: element.functionCall });
-
-        // Disconnect the observer once the element is found
-        observer.disconnect();
       }
     });
   });
