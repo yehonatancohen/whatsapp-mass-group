@@ -1,4 +1,5 @@
 # whatsapp-mass-group
+# Still in development
 A couple of scripts to select hundreds of people to add to a group
 
 TO RUN:
