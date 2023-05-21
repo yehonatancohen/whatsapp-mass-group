@@ -1,4 +1,4 @@
-// background.js
+/*// background.js
 
 // Define the element-to-function mappings
 const elementFunctions = [
@@ -53,3 +53,4 @@ function waitForElement(element) {
 
 // Start waiting for all elements
 elementFunctions.forEach(waitForElement);
+*/

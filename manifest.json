@@ -6,11 +6,10 @@
   "description": "Whatsapp mass group creation and sending messages",
   "web_accessible_resources": [{
     "matches": ["https://web.whatsapp.com/*"],
-    "resources": ["logo.png"]
+    "resources": ["logo/logo.png"]
   }],
   "action": {
-    "default_title": "tagEveryone!",
-    "default_popup": "popup/popup.html"
+    "default_title": "Massive group creator"
   },
   "background": {
     "service_worker": "service_worker.js"
@@ -18,12 +17,12 @@
   "content_scripts": [
     {
       "matches": ["https://web.whatsapp.com/*"],
-      "js": ["content_scripts/main.js","jquery-3.7.0.js"],
+      "js": ["jquery-3.7.0.js","content_scripts/main.js"],
       "run_at": "document_idle"
     }
   ],
   "icons": { 
-    "128": "logo.png" 
+    "128": "logo/logo.png" 
   },
   "permissions": [
     "activeTab",
