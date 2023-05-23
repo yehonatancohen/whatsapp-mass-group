@@ -168,10 +168,6 @@ async function send_message() {
     document.getElementsByClassName("tvf2evcx oq44ahr5 lb5m6g5c svlsagor p2rjqpw5 epia9gcq")[0].click()
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 function newName(str) {
     // Extract the string and number parts
     let match = str.match(/^(\D*)(\d*)$/);
@@ -198,7 +194,34 @@ function newName(str) {
     return prefix + newNumStr;
 }
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
+async function exportContacts() {
+    var buttoncheck = document.getElementsByClassName("lhggkp7q cxec7x23 kanlod6e gfz4du6o r7fjleex nmeg1xfo okm7a8wg le5p0ye3");
+    var name = document.getElementsByClassName("ggj6brxn gfz4du6o r7fjleex g0rxnol2 lhj4utae le5p0ye3 l7jjieqr _11JPr");
+    var arrlength = buttoncheck.length;
+    var lastLowestButton;
+    var i = 0
+    var contactsArr = {};
+    while (true) {
+        for (let j = 0; j < arrlength - 1; j++) {
+            i++;
+            var arrlength = buttoncheck.length;
+            contactsArr[name[j].textContent] = contactsArr[name[j].textContent] + 1
+        }
+        await sleep(500)
+        lastLowestButton = lowestButtonCheck;
+        var lowestButtonCheck = Array.from(buttoncheck).sort((a, b) => b.getBoundingClientRect().bottom - a.getBoundingClientRect().bottom)[0];
+        lowestButtonCheck.scrollIntoView()
+        var arrlength = buttoncheck.length;
+        await sleep(500);
+        if(i > 500){
+            return contactsArr;
+        }
+    }
+}
   
 async function selectContacts(amount) {
     var buttoncheck = document.getElementsByClassName("lhggkp7q cxec7x23 kanlod6e gfz4du6o r7fjleex nmeg1xfo okm7a8wg le5p0ye3")
