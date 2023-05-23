@@ -1,23 +1,3 @@
-function waitForElm(selector) {
-    return new Promise(resolve => {
-        if (document.querySelector(selector)) {
-            return resolve(document.querySelector(selector));
-        }
-
-        const observer = new MutationObserver(mutations => {
-            if (document.querySelector(selector)) {
-                resolve(document.querySelector(selector));
-                observer.disconnect();
-            }
-        });
-
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-    });
-}
-
 function displayCustomMessageBox(message) {
     // Create elements
     var boxWrapper = document.createElement("div");
@@ -39,7 +19,7 @@ function displayCustomMessageBox(message) {
     boxWrapper.style.zIndex = "9999"; // Set a high z-index value
     box.style.backgroundColor = "white";
     box.style.padding = "20px";
-    logo.style.width = "100px";
+    logo.style.width = "10px";
     content.style.margin = "0";
     content.style.marginBottom = "20px";
     button.style.padding = "10px 20px";
@@ -72,58 +52,28 @@ function displayCustomMessageBox(message) {
       }
     };
 }
-  
 
-  
+// Function to check if the specified element exists in the DOM
+function checkElementExistence() {
+    const addParticipantsButton = document.querySelector('#app > div > div > div._2Ts6i._1xFRo > span > div > span > div > div > div > section > div.gsqs0kct.oauresqk.efgp0a3n.h3bz2vby.g0rxnol2.tvf2evcx.oq44ahr5.lb5m6g5c.brac1wpa.lkjmyc96.i4pc7asj.bcymb0na.przvwfww.e8k79tju > div.tt8xd2xn.dl6j7rsh.mpdn4nr2.avk8rzj1 > div:nth-child(1)');
+    const customButton = document.getElementById('massGroup-menu-button');
 
-var menuButton;
-var menuSubmitButton;
-
-var menu;
-
-function addButtonListener() {
-    const parent = document;
-
-    parent.addEventListener('click', (event) => {
-        if (event.target.matches('#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span > div:nth-child(6) > div > span')) {
-            try{
-                menu = document.getElementsByClassName("addGroup-Menu")[0]
-                menu.remove()
-            }
-            catch{
-                menu = createMenu(document.querySelector('#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span > div:nth-child(6) > div > span'))
-            }
-        }
-        if (event.target.matches('#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span > div:nth-child(6) > div > span > div > button')) {
-            name = document.querySelector("#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span > div:nth-child(6) > div > span > div > input[type=text]").value.split(',').map(p => p.trim().replace(/ /g,''));
-            amount = document.querySelector("#app > div > div > div._2Ts6i._3RGKj > header > div._604FD > div > span > div:nth-child(6) > div > span > div > input[type=text]:nth-child(2)").value.split(',').map(p => p.trim().replace(/ /g,''));
-            run(name, amount)
-        }
-        if(event.target = menuButton){
-            displayCustomMessageBox("test")
-        }
-    });
-}
-
-function getElementSelector(element) {
-    if (element) {
-      const id = element.getAttribute('id');
-      const className = element.getAttribute('class');
-      const tag = element.tagName.toLowerCase();
-  
-      let elementSelector = tag;
-      if (id) {
-        elementSelector += `#${id}`;
-      }
-      if (className) {
-        elementSelector += `.${className.replace(/\s+/g, '.')}`;
-      }
-  
-      return elementSelector;
+    if (addParticipantsButton && customButton == null) {
+        console.log("RUNN")
+        duplicateElement(addParticipantsButton)
     }
-    return null;
 }
 
+const observer = new MutationObserver(checkElementExistence);
+
+observer.observe(document.documentElement, { childList: true, subtree: true });
+
+checkElementExistence();
+
+function openStartMenu(){
+    duplicateElement(document.querySelector("#app > div > div > div._2QgSC"));
+    displayCustomMessageBox("test");
+}
 
 function duplicateElement(element) {
     const parentElement = element.parentElement;
@@ -135,57 +85,14 @@ function duplicateElement(element) {
         
         if (titleElement) {
             titleElement.textContent = "Add mass participants";
+            titleElement.id = "massGroup-menu-button";
         }
 
         parentElement.insertBefore(duplicatedElement, parentElement.firstChild);
 
-        menuButton = duplicateElement
+        duplicatedElement.addEventListener('click', openStartMenu);
     }
 }
-  
-  
-
-waitForElm("#app > div > div > div._2Ts6i._1xFRo > span > div > span > div > div > div > section > div.gsqs0kct.oauresqk.efgp0a3n.h3bz2vby.g0rxnol2.tvf2evcx.oq44ahr5.lb5m6g5c.brac1wpa.lkjmyc96.i4pc7asj.bcymb0na.przvwfww.e8k79tju > div.tt8xd2xn.dl6j7rsh.mpdn4nr2.avk8rzj1 > div:nth-child(1)").then((elm) => {
-    duplicateElement(elm)
-})
-
-addButtonListener();
-
-function createMenu(menuLocation) {
-    const menuContainer = document.createElement('div');
-    menuContainer.style.position = 'absolute';
-    menuContainer.style.top = '50px';
-    menuContainer.style.left = '-200px';
-    menuContainer.style.width = '200px';
-    menuContainer.style.padding = '10px';
-    menuContainer.style.background = 'white';
-    menuContainer.style.border = '1px solid black';
-
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.placeholder = 'Enter initiator name...';
-    input.style.width = '100%';
-    input.style.marginBottom = '10px';
-
-    const input2 = document.createElement('input');
-    input2.type = 'text';
-    input2.placeholder = 'Enter amount...';
-    input2.style.width = '100%';
-    input2.style.marginBottom = '10px';
-
-    const button = document.createElement('button');
-    button.textContent = 'Submit';
-    button.style.width = '100%';
-
-    menuContainer.className = "addGroup-Menu";
-
-    menuContainer.appendChild(input);
-    menuContainer.appendChild(input2);
-    menuContainer.appendChild(button);
-
-    menuLocation.appendChild(menuContainer);
-}
-
 
 function extractGroupUsers() {
     const groupSubtitle = document.querySelector("[data-testid='chat-subtitle']")
@@ -290,6 +197,8 @@ function newName(str) {
     // Combine the prefix and new number and return the result
     return prefix + newNumStr;
 }
+
+
   
 async function selectContacts(amount) {
     var buttoncheck = document.getElementsByClassName("lhggkp7q cxec7x23 kanlod6e gfz4du6o r7fjleex nmeg1xfo okm7a8wg le5p0ye3")
